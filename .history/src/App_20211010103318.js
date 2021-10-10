@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+
 import { Predictions } from "aws-amplify";
 
 function App() {

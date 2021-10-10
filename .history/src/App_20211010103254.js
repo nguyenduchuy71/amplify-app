@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import logo from "./logo.svg";
 import "./App.css";
+
 import { Predictions } from "aws-amplify";
 
 function App() {
@@ -14,8 +16,7 @@ function App() {
   return (
     <div className="App">
       <input value={text} onChange={(e) => setText(e.target.value)} />
-      <button onClick={translateCall}>Translate</button>
-      <p>{reponse}</p>
+      <button onClick={translate}>Translate</button>
     </div>
   );
 }
