@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
-import { Predictions } from "aws-amplify";
-
+import Header from "./components/Header";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import HomeScreen from "./pages/HomeScreen";
+import ProjectDetailsScreen from "./pages/ProjectDetailsScreen";
+import LoginScreen from "./pages/LoginScreen";
+import Footer from "./components/Footer";
 function App() {
-  const [reponse, setReponse] = useState("Ready to translate...");
-  const [text, setText] = useState("Write to translate...");
-  const translateCall = async () => {
-    const data = await Predictions.convert({
-      translateText: { source: { text } },
-    });
-    setReponse(data.text);
-  };
   return (
-    <div className="App">
-      <input value={text} onChange={(e) => setText(e.target.value)} />
-      <button onClick={translateCall}>Translate</button>
-      <p>{reponse}</p>
+    <div className="wrapper">
+      <Router>
+        <Header />
+        <div className="container">
+          <Switch>
+            <Route path="/project/:id" component={ProjectDetailsScreen} />
+            <Route path="/login" component={LoginScreen} />
+            <Route path="/" component={HomeScreen} exact />
+          </Switch>
+        </div>
+        <Footer />
+      </Router>
     </div>
   );
 }
